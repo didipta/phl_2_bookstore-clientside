@@ -4,7 +4,6 @@ import { api } from "./api/apiSlice";
 
 const store = configureStore({
   reducer: {
-    user: api.reducer,
     [api.reducerPath]: api.reducer,
   },
   middleware: (getDefaultMiddleware) =>
