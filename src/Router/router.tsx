@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../component/Layout/Main";
+import Home from "../component/Homepgae/Home";
 
 export const routes=createBrowserRouter([
     {
@@ -8,8 +9,12 @@ export const routes=createBrowserRouter([
         children:[
             {
                 path:"/",
-                element:<div>Home</div>
+                element:<Home/>
             },
+            {
+                path:"/signin",
+                element:<div>Sign in</div>
+            }
         ]
     }
 ])
