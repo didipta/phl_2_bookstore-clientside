@@ -4,5 +4,16 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require("daisyui")],
+  daisyui: {
+    themes: [
+      "winter",
+      // ,"dracula"
+      {
+        mytheme: {
+          primary: "#2799D5",
+        },
+      },
+    ],
+  },
 };

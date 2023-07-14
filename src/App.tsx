@@ -1,12 +1,14 @@
-import { useState } from 'react'
+
 import './App.css'
+import { RouterProvider } from 'react-router-dom';
+import { routes } from './Router/router';
 
 function App() {
-  const [count, setCount] = useState(0)
+
 
   return (
     <>
-      <h1>hcdjhcdabjchad</h1>
+       <RouterProvider router={routes}/>
     </>
   )
 }
