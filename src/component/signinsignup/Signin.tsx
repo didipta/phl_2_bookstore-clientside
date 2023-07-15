@@ -36,6 +36,7 @@ const Signin = () => {
                     JSON.stringify(res.data.data)
                 )
                 localStorage.setItem('accessToken', res.data.data.accessToken)
+                localStorage.setItem('setTime', new Date().getTime().toString())
                 dispatch(setCurrentUser(res.data.data))
                 navigate('/')
             })

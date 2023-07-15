@@ -16,6 +16,27 @@ function App() {
         dispatch(setCurrentUser(JSON.parse(user || '{}')))
     }, [])
 
+    const storedTime = localStorage.getItem('setTime')
+    if (storedTime) {
+        const currentTime = new Date().getTime()
+        const storedTimeMilliseconds = parseInt(storedTime, 10)
+        const oneDayMilliseconds = 24 * 60 * 60 * 1000 // 1 day in milliseconds
+
+        const timeDifference = currentTime - storedTimeMilliseconds
+        if (timeDifference >= oneDayMilliseconds) {
+            localStorage.removeItem('myKey')
+            localStorage.removeItem('book-store')
+            localStorage.removeItem('accessToken')
+        } else {
+            const remainingTime = oneDayMilliseconds - timeDifference
+            setTimeout(() => {
+                localStorage.removeItem('myKey')
+                localStorage.removeItem('book-store')
+                localStorage.removeItem('accessToken')
+            }, remainingTime)
+        }
+    }
+
     return (
         <>
             <RouterProvider router={routes} />

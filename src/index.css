@@ -77,3 +77,9 @@ button:focus-visible {
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
 }
+.custorm-name2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}

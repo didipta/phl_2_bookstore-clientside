@@ -1,20 +1,21 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
+import { useNewbookQuery } from '../../redux/features/book/bookApi'
 import Banner from './Banner'
 import Topproduct from './Topproduct'
-import { useGetUserQuery } from '../../redux/features/user/userApi'
 
 const Home = () => {
-    const { data, isLoading, error } = useGetUserQuery(undefined)
-
-    if (!isLoading) {
-        console.log(data)
-    }
+    const { data, isLoading, error } = useNewbookQuery(undefined)
 
     return (
         <div>
             <Banner />
-            <Topproduct />
+            {!isLoading ? (
+                <Topproduct data={data.data} />
+            ) : (
+                <div>Loading...</div>
+            )}
         </div>
     )
 }

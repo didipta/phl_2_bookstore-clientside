@@ -31,7 +31,7 @@ const Signup = () => {
     const [signupuser] = useSignupuserMutation()
 
     const onSubmit: SubmitHandler<Inputs> = (data) => {
-        ;(data.role = 'user'),
+        (data.role = 'user'),
             signupuser(data)
                 .then((res: any) => {
                     localStorage.setItem(
@@ -41,6 +41,10 @@ const Signup = () => {
                     localStorage.setItem(
                         'accessToken',
                         res.data.data.accessToken
+                    )
+                    localStorage.setItem(
+                        'setTime',
+                        new Date().getTime().toString()
                     )
                     dispatch(setCurrentUser(res.data.data))
                     navigate('/')

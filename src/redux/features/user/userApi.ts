@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { api } from '../../api/apiSlice'
 
-const productApi = api.injectEndpoints({
+const userApi = api.injectEndpoints({
     endpoints: (builder) => ({
         getUser: builder.query({
             query: () => '/users/',
@@ -24,4 +24,4 @@ const productApi = api.injectEndpoints({
 })
 
 export const { useGetUserQuery, useLoginuserMutation, useSignupuserMutation } =
-    productApi
+    userApi
