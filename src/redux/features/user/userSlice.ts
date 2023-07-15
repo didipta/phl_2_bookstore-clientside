@@ -1,11 +1,39 @@
-import { api } from "../../api/apiSlice";
+/* eslint-disable no-param-reassign */
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-const productApi = api.injectEndpoints({
-  endpoints: (builder) => ({
-    getUser: builder.query({
-      query: () => "/users/",
-    }),
-  }),
-});
+export type IRole = 'user' | 'admin'
 
-export const { useGetUserQuery } = productApi;
+interface IUser {
+    phoneNumber: string
+    role: IRole
+    password: string
+    Name: string
+    address: string
+    email: string
+    accessToken: string
+}
+
+interface Iuserstate {
+    currentUser: IUser | null
+}
+
+const initialState: Iuserstate = {
+    currentUser: null,
+}
+
+const userSlice = createSlice({
+    name: 'user',
+    initialState,
+    reducers: {
+        setCurrentUser: (state, action: PayloadAction<IUser>) => {
+            state.currentUser = action.payload
+        },
+        removeuse: (state) => {
+            state.currentUser = null
+        },
+    },
+})
+
+export const { setCurrentUser, removeuse } = userSlice.actions
+
+export default userSlice.reducer
