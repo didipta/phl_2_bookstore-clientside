@@ -83,3 +83,30 @@ button:focus-visible {
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
 }
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+}
+
+.pagination li {
+    margin-right: 0.5rem;
+}
+
+.pagination li a {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border: 1px solid #ddd;
+    color: #333;
+    text-decoration: none;
+}
+
+.pagination li a:hover {
+    background-color: #ddd;
+}
+
+.pagination .active a {
+    background-color: #333;
+    color: #fff;
+}

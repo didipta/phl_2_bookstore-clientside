@@ -42,8 +42,8 @@ const Header = () => {
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/" className=" text-base">
-                                    Book
+                                <Link to="/book" className=" text-base">
+                                    All Book
                                 </Link>
                             </li>
                             <li>
@@ -70,8 +70,8 @@ const Header = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link to="/" className=" text-base">
-                                Book
+                            <Link to="/book" className=" text-base">
+                                All Book
                             </Link>
                         </li>
                         <li>

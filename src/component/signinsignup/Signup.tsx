@@ -31,7 +31,7 @@ const Signup = () => {
     const [signupuser] = useSignupuserMutation()
 
     const onSubmit: SubmitHandler<Inputs> = (data) => {
-        (data.role = 'user'),
+        ;(data.role = 'user'),
             signupuser(data)
                 .then((res: any) => {
                     localStorage.setItem(
