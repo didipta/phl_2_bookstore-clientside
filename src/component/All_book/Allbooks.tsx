@@ -8,6 +8,7 @@ import Productcard from '../Product/Productcard'
 import { PaginationControl } from 'react-bootstrap-pagination-control'
 import React, { useState } from 'react'
 import ReactPaginate from 'react-paginate'
+import { useAppSelector } from '../../redux/hook'
 const Allbooks = () => {
     const [page, setPage] = useState(1)
 
@@ -15,10 +16,19 @@ const Allbooks = () => {
         setPage(selected + 1)
     }
     const { data, isLoading, error } = useGetbookQuery(page)
+    const { currentUser } = useAppSelector((state) => state.currentuser)
 
     return (
         <div>
+            <div className=" flex justify-between items-center p-4">
             <h1 className="text-3xl text-center font-bold">All Books</h1>
+            {
+                currentUser && <button className="btn btn-sm btn-primary">Add Book</button>
+            }
+           
+
+            </div>
+           
             {!isLoading ? (
                 <div className="my-5">
                     <div className="grid grid-cols-4 gap-4 p-4">
