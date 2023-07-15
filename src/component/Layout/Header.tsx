@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../redux/hook'
-import { removeuse } from '../../redux/features/user/Userslice';
+import { removeuse } from '../../redux/features/user/Userslice'
 
 const Header = () => {
-    const { currentUser  } = useAppSelector((state) => state.currentuser)
-    const dispatch = useAppDispatch();
+    const { currentUser } = useAppSelector((state) => state.currentuser)
+    const dispatch = useAppDispatch()
 
     const logout = () => {
         localStorage.removeItem('book-store')

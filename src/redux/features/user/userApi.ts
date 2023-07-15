@@ -13,7 +13,15 @@ const productApi = api.injectEndpoints({
                 body: data,
             }),
         }),
+        signupuser: builder.mutation({
+            query: (data) => ({
+                url: '/users/signup/',
+                method: 'POST',
+                body: data,
+            }),
+        }),
     }),
 })
 
-export const { useGetUserQuery, useLoginuserMutation } = productApi
+export const { useGetUserQuery, useLoginuserMutation, useSignupuserMutation } =
+    productApi

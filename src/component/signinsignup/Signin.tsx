@@ -44,11 +44,6 @@ const Signin = () => {
             })
     }
 
-    useEffect(() => {
-        const user = localStorage.getItem('book-store')
-        console.log(JSON.parse(user || '{}'))
-    }, [])
-
     return (
         <div className="card w-96 bg-base-100 shadow-xl mx-auto my-20">
             <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
