@@ -17,11 +17,12 @@ type Inputs = {
     Publication_Date: Date
     postby: string
     image: string
-    Reviews:[]
+    Reviews: []
 }
-const navigate = useNavigate()
+
 const Addbook = () => {
-    const { currentUser } = useAppSelector((state):any => state.currentuser)
+    const navigate = useNavigate()
+    const { currentUser } = useAppSelector((state): any => state.currentuser)
     const {
         register,
         handleSubmit,
@@ -31,14 +32,13 @@ const Addbook = () => {
     } = useForm<Inputs>()
     const [addbook] = useAddbookMutation()
     const onSubmit = (data: Inputs) => {
-        data.postby = currentUser?.user?._id;
-        data.Reviews=[];
+        data.postby = currentUser?.user?._id
+        data.Reviews = []
         addbook(data)
             .then((res: any) => {
                 toast.success('Add book success')
                 reset()
-                navigate("/book")
-                
+                navigate('/book')
             })
             .catch((err) => {
                 toast.error(err.message)

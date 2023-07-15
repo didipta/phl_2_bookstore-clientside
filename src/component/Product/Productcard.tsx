@@ -1,12 +1,18 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
+
+import { Link } from 'react-router-dom'
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 const Productcard = ({ item }: any) => {
     return (
         <div>
-            <div className="card bg-base-100 shadow-sm">
+            <Link
+                to={`/book/details/${item._id}`}
+                className="card bg-base-100 shadow-sm"
+            >
                 <figure>
                     <img src={item?.image} alt="Shoes" className=" w-40 h-40" />
                 </figure>
@@ -22,7 +28,7 @@ const Productcard = ({ item }: any) => {
                         ).toLocaleDateString()}
                     </p>
                 </div>
-            </div>
+            </Link>
         </div>
     )
 }

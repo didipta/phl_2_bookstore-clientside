@@ -10,11 +10,15 @@ interface IUser {
     Name: string
     address: string
     email: string
+}
+
+interface Isetresult {
+    user: IUser
     accessToken: string
 }
 
-interface Iuserstate {
-    currentUser: IUser | null
+export interface Iuserstate {
+    currentUser: Isetresult | null
 }
 
 const initialState: Iuserstate = {
