@@ -16,6 +16,10 @@ const bookApi = api.injectEndpoints({
                 body: data,
             }),
         }),
+
+        getsinglebook: builder.query({
+            query: (data: string) => `/books/${data}`,
+        }),
     }),
 })
 

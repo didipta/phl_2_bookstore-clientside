@@ -4,6 +4,8 @@ import Home from '../component/Homepgae/Home'
 import Signin from '../component/signinsignup/Signin'
 import Signup from '../component/signinsignup/Signup'
 import Allbooks from '../component/All_book/Allbooks'
+import Addbook from '../component/All_book/Addbook'
+import Book from '../component/All_book/Book'
 
 export const routes = createBrowserRouter([
     {
@@ -26,6 +28,14 @@ export const routes = createBrowserRouter([
                 path: '/book',
                 element: <Allbooks />,
             },
+            {
+                path: '/book/addbook',
+                element: <Addbook />,
+            },
+            {
+                path: '/book/details/:id',
+                element:<Book/>
+            }
         ],
     },
 ])

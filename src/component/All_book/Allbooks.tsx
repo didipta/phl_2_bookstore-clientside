@@ -9,6 +9,7 @@ import { PaginationControl } from 'react-bootstrap-pagination-control'
 import React, { useState } from 'react'
 import ReactPaginate from 'react-paginate'
 import { useAppSelector } from '../../redux/hook'
+import { Link } from 'react-router-dom'
 const Allbooks = () => {
     const [page, setPage] = useState(1)
 
@@ -21,17 +22,17 @@ const Allbooks = () => {
     return (
         <div>
             <div className=" flex justify-between items-center p-4">
-            <h1 className="text-3xl text-center font-bold">All Books</h1>
-            {
-                currentUser && <button className="btn btn-sm btn-primary">Add Book</button>
-            }
-           
-
+                <h1 className="text-3xl text-center font-bold">All Books</h1>
+                {currentUser && (
+                    <Link to="/book/addbook" className="btn btn-sm btn-primary">
+                        Add Book
+                    </Link>
+                )}
             </div>
-           
+
             {!isLoading ? (
                 <div className="my-5">
-                    <div className="grid grid-cols-4 gap-4 p-4">
+                    <div className="grid grid-cols-2 lg:grid-cols-5 md:grid-cols-3 gap-4 p-4">
                         {data?.data.map((item: any) => (
                             <Productcard key={item.id} item={item} />
                         ))}

@@ -6,9 +6,9 @@
 const Productcard = ({ item }: any) => {
     return (
         <div>
-            <div className="card bg-base-100 shadow-xl">
+            <div className="card bg-base-100 shadow-sm">
                 <figure>
-                    <img src={item?.image} alt="Shoes" className=" w-52" />
+                    <img src={item?.image} alt="Shoes" className=" w-40 h-40" />
                 </figure>
                 <div className="card-body">
                     <h2 className="card-title custorm-name2">{item?.Title}</h2>
