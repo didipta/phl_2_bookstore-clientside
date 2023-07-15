@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { api } from '../../api/apiSlice'
 
@@ -19,6 +20,16 @@ const bookApi = api.injectEndpoints({
 
         getsinglebook: builder.query({
             query: (data: string) => `/books/${data}`,
+            providesTags: ['reviews'],
+        }),
+
+        setreview: builder.mutation({
+            query: ({ id, data }) => ({
+                url: `/books/review/${id}`,
+                method: 'PATCH',
+                body: data,
+            }),
+            invalidatesTags: ['reviews'],
         }),
     }),
 })
@@ -28,4 +39,5 @@ export const {
     useAddbookMutation,
     useNewbookQuery,
     useGetsinglebookQuery,
+    useSetreviewMutation,
 } = bookApi

@@ -6,6 +6,7 @@ import Signup from '../component/signinsignup/Signup'
 import Allbooks from '../component/All_book/Allbooks'
 import Addbook from '../component/All_book/Addbook'
 import Book from '../component/All_book/Book'
+import Privateroute from './Privateroute'
 
 export const routes = createBrowserRouter([
     {
@@ -30,7 +31,7 @@ export const routes = createBrowserRouter([
             },
             {
                 path: '/book/addbook',
-                element: <Addbook />,
+                element:<Privateroute><Addbook /></Privateroute>,
             },
             {
                 path: '/book/details/:id',
