@@ -3,12 +3,17 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { api } from '../../api/apiSlice'
-
 const bookApi = api.injectEndpoints({
     endpoints: (builder) => ({
         getbook: builder.query({
-            query: (data:any) =>
-                `/books?page=${data.page}&searchTerm=${data.search}`,
+            query: (data: any) =>
+                `/books?page=${data.page}&searchTerm=${data.search}${
+                    data.genre !== '' ? `&Genre=${data.genre}`: ''
+                }${
+                    data.publication != '' ?
+                    `&Publication_Date=${data.publication}`: ''
+                }`,
+            providesTags: ['bookss'],
         }),
         newbook: builder.query({
             query: () => '/books/get/new',
@@ -23,7 +28,7 @@ const bookApi = api.injectEndpoints({
 
         getsinglebook: builder.query({
             query: (data: string) => `/books/${data}`,
-            providesTags: ['reviews'],
+            providesTags: ['books'],
         }),
 
         setreview: builder.mutation({
@@ -32,7 +37,24 @@ const bookApi = api.injectEndpoints({
                 method: 'PATCH',
                 body: data,
             }),
-            invalidatesTags: ['reviews'],
+            invalidatesTags: ['books'],
+        }),
+
+        updatebook: builder.mutation({
+            query: ({ id, data }) => ({
+                url: `/books/${id}`,
+                method: 'PATCH',
+                body: data,
+            }),
+            invalidatesTags: ['books'],
+        }),
+
+        deletebook: builder.mutation({
+            query: (id) => ({
+                url: `/books/${id}`,
+                method: 'DELETE',
+            }),
+            invalidatesTags: ['bookss'],
         }),
     }),
 })
@@ -43,4 +65,6 @@ export const {
     useNewbookQuery,
     useGetsinglebookQuery,
     useSetreviewMutation,
+    useUpdatebookMutation,
+    useDeletebookMutation,
 } = bookApi

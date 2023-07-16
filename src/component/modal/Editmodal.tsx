@@ -1,8 +1,14 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-misused-promises */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
-import React from 'react';
+import React, { useRef } from 'react';
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form';
+import { useUpdatebookMutation } from '../../redux/features/book/bookApi';
+import { toast } from 'react-hot-toast';
 type Inputs = {
     Title: string
     Author: string
@@ -13,6 +19,7 @@ type Inputs = {
     Reviews: []
 }
 const Editmodal = ({id,data}:any) => {
+    const ref=useRef();
     const {
         register,
         handleSubmit,
@@ -24,8 +31,18 @@ const Editmodal = ({id,data}:any) => {
     useEffect(() => {
         reset(data)
     },[data])
-    const onSubmit = () => {
-        console.log("edit",id)
+    const [updatebook] = useUpdatebookMutation()
+    const onSubmit = (data:Inputs) => {
+        updatebook({id,data}).then((res:any)=>{
+            toast.success("Update success")
+            ref.current.click();
+        }
+        ).
+        catch((err)=>{
+            toast.error(err.message)
+        }
+        )
+
     }
     return (
         <div>
@@ -91,11 +108,14 @@ const Editmodal = ({id,data}:any) => {
                         <span className="label-text">Publication Date</span>
                     </label>
                     <input
-                        type="date"
+                        type="text"
                         placeholder="name"
                         className="input input-bordered"
+
                         {...register('Publication_Date', { required: true })}
-                    />
+                     
+                        />
+                
                     {errors.Publication_Date && (
                         <span className="text-xs text-red-500">
                             This field is required
@@ -124,11 +144,12 @@ const Editmodal = ({id,data}:any) => {
                         type="submit"
                         value="Save"
                         className="btn btn-neutral font-bold"
+                        
                     />
                 </div>
             </form>
         <div className="modal-action">
-        <label htmlFor={`edit-${id}`} className="btn">Close!</label>
+        <label htmlFor={`edit-${id}`} ref={ref} className="btn">Close!</label>
         </div>
     </div>
     </div>

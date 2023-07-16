@@ -13,10 +13,14 @@ import { Link } from 'react-router-dom'
 const Allbooks = () => {
     const [page, setPage] = useState(1)
     const [search, setSearchs] = useState('')
+    const [genre, setGenre] = useState('')
+    const [publication, setPublication] = useState('')
 
     const datas={
         page,
-        search
+        search,
+        genre,
+        publication
     }
 
     const handlePageChange = ({ selected }: any) => {
@@ -42,6 +46,26 @@ const Allbooks = () => {
                 className="input input-bordered w-1/2"
                 onChange={(e)=>setSearchs(e.target.value)}
                 />
+            </div>
+            <div className="flex justify-center items-center gap-3">
+               <label>
+                     <p
+                     className='text-2xl font-bold mb-1'
+                     >genre </p>
+                     <input type="text" placeholder="Enter genre" className="input input-bordered w-96"
+                        onChange={(e)=>setGenre(e.target.value)}
+                     
+                     />
+               </label>
+               <label>
+                     <p
+                     className='text-2xl font-bold mb-1'
+                     >publication year </p>
+                     <input type="date" placeholder="Enter genre" className="input input-bordered w-96"
+                        onChange={(e)=>setPublication(e.target.value)}
+                     
+                     />
+               </label>
             </div>
 
             {!isLoading ? (

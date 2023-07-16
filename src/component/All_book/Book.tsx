@@ -68,7 +68,10 @@ const Book = () => {
                     </div>
                     
                 </div>
-                <div>
+
+                {
+                    currentUser!==null&&
+                    <div>
                     <h2 className="text-2xl font-bold text-center">Reviews</h2>
                     <label className="flex p-5">
                         <input 
@@ -94,7 +97,7 @@ const Book = () => {
 
                         }
                         </div>
-                </div>
+                </div>}
                 <Deletedmodal id={id}/>
                 <Editmodal id={id} data={data.data}/>
                 </div>
