@@ -1,12 +1,21 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAppSelector } from "../redux/hook";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 
 const Privateroute = ({children}:IProps) => {
-    const { currentUser,isLoading} = useAppSelector((state) => state.currentuser)
+    const { currentUser} = useAppSelector((state) => state.currentuser)
     const { pathname } = useLocation();
- 
+
+    const [isLoading, setIsLoading] = useState(true);
+     console.log(useAppSelector((state) => state.currentuser))
+     useEffect(() => {
+        const token = localStorage.getItem('accessToken')
+        if (token) {
+            setIsLoading(false)
+        }
+    }, []
+    )
     if (isLoading) {
         return <div>Loading...</div>;
       }
