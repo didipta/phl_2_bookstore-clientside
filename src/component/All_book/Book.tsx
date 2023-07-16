@@ -20,6 +20,7 @@ import {
     addToWishlist,
     removeFromWishlist,
 } from '../../redux/features/book/wishlist'
+import { markCurrentlyReading } from '../../redux/features/book/readlist'
 
 const Book = () => {
     const [review, setReview] = useState('')
@@ -61,6 +62,14 @@ const Book = () => {
                 })
         }
     }
+    const status  = useSelector((state) =>
+    state.readlist.find((b) => b.id === id)
+  );
+
+  const handleMarkCurrentlyReading = () => {
+    dispatch(markCurrentlyReading({ bookId: id }));
+    toast.success("Added to currently reading");
+  };
     return (
         <div>
             {!isLoading ? (
@@ -91,8 +100,8 @@ const Book = () => {
                                 ).toLocaleDateString()}
                             </p>
 
-                            <button className="btn btn-sm text-white  bg-pink-600 border-none ">
-                                Watch
+                            <button className="btn btn-sm text-white  bg-pink-600 border-none " onClick={handleMarkCurrentlyReading}>
+                            Read
                             </button>
                             <button
                                 className="btn btn-sm text-white  bg-pink-600 border-none mx-2"
