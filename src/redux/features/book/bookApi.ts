@@ -8,10 +8,11 @@ const bookApi = api.injectEndpoints({
         getbook: builder.query({
             query: (data: any) =>
                 `/books?page=${data.page}&searchTerm=${data.search}${
-                    data.genre !== '' ? `&Genre=${data.genre}`: ''
+                    data.genre !== '' ? `&Genre=${data.genre}` : ''
                 }${
-                    data.publication != '' ?
-                    `&Publication_Date=${data.publication}`: ''
+                    data.publication != ''
+                        ? `&Publication_Date=${data.publication}`
+                        : ''
                 }`,
             providesTags: ['bookss'],
         }),

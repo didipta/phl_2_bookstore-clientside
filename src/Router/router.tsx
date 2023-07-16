@@ -31,7 +31,11 @@ export const routes = createBrowserRouter([
             },
             {
                 path: '/book/addbook',
-                element:<Privateroute><Addbook /></Privateroute>,
+                element: (
+                    <Privateroute>
+                        <Addbook />
+                    </Privateroute>
+                ),
             },
             {
                 path: '/book/details/:id',

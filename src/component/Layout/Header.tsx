@@ -87,7 +87,7 @@ const Header = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    {currentUser?.user==undefined ? (
+                    {currentUser?.user == undefined ? (
                         <Link to="/signin" className="btn">
                             Sign in
                         </Link>

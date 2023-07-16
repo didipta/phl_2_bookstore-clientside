@@ -1,30 +1,29 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
-import { useEffect, useState } from "react";
-import { useAppSelector } from "../redux/hook";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from 'react'
+import { useAppSelector } from '../redux/hook'
+import { Navigate, useLocation, useNavigate } from 'react-router-dom'
 
-const Privateroute = ({children}:IProps) => {
-    const { currentUser} = useAppSelector((state) => state.currentuser)
-    const { pathname } = useLocation();
+const Privateroute = ({ children }: IProps) => {
+    const { currentUser } = useAppSelector((state) => state.currentuser)
+    const { pathname } = useLocation()
 
-    const [isLoading, setIsLoading] = useState(true);
-     console.log(useAppSelector((state) => state.currentuser))
-     useEffect(() => {
+    const [isLoading, setIsLoading] = useState(true)
+    console.log(useAppSelector((state) => state.currentuser))
+    useEffect(() => {
         const token = localStorage.getItem('accessToken')
         if (token) {
             setIsLoading(false)
         }
-    }, []
-    )
+    }, [])
     if (isLoading) {
-        return <div>Loading...</div>;
-      }
+        return <div>Loading...</div>
+    }
 
-      if (!currentUser) {
-        return <Navigate to="/signin" state={{ path: pathname }} />;
-      }
-    
-      return children;
-};
+    if (!currentUser) {
+        return <Navigate to="/signin" state={{ path: pathname }} />
+    }
 
-export default Privateroute;
+    return children
+}
+
+export default Privateroute
