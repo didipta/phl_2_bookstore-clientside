@@ -4,7 +4,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
-import React, { useRef } from 'react'
+import  { useRef } from 'react'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useUpdatebookMutation } from '../../redux/features/book/bookApi'
@@ -19,11 +19,10 @@ type Inputs = {
     Reviews: []
 }
 const Editmodal = ({ id, data }: any) => {
-    const ref = useRef()
+    const ref:any = useRef()
     const {
         register,
         handleSubmit,
-        watch,
         reset,
         formState: { errors },
     } = useForm<Inputs>()
@@ -34,7 +33,7 @@ const Editmodal = ({ id, data }: any) => {
     const [updatebook] = useUpdatebookMutation()
     const onSubmit = (data: Inputs) => {
         updatebook({ id, data })
-            .then((res: any) => {
+            .then(() => {
                 toast.success('Update success')
                 ref.current.click()
             })

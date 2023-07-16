@@ -6,7 +6,7 @@ import Banner from './Banner'
 import Topproduct from './Topproduct'
 
 const Home = () => {
-    const { data, isLoading, error } = useNewbookQuery(undefined)
+    const { data, isLoading} = useNewbookQuery(undefined)
 
     return (
         <div>

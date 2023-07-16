@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 export type IRole = 'user' | 'admin'
 
 interface IUser {
+    _id: string
     phoneNumber: string
     role: IRole
     password: string
@@ -29,7 +31,7 @@ const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        setCurrentUser: (state, action: PayloadAction<IUser>) => {
+        setCurrentUser: (state:any, action: PayloadAction<IUser>) => {
             state.currentUser = action.payload
         },
         removeuse: (state) => {

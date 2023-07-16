@@ -5,8 +5,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { useGetbookQuery } from '../../redux/features/book/bookApi'
 import Productcard from '../Product/Productcard'
-import { PaginationControl } from 'react-bootstrap-pagination-control'
-import React, { useState } from 'react'
+import  { useState } from 'react'
 import ReactPaginate from 'react-paginate'
 import { useAppSelector } from '../../redux/hook'
 import { Link } from 'react-router-dom'
@@ -26,7 +25,7 @@ const Allbooks = () => {
     const handlePageChange = ({ selected }: any) => {
         setPage(selected + 1)
     }
-    const { data, isLoading, error } = useGetbookQuery(datas)
+    const { data, isLoading } = useGetbookQuery(datas)
     const { currentUser } = useAppSelector((state) => state.currentuser)
 
     return (

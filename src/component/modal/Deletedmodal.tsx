@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from 'react'
+
 import { useDeletebookMutation } from '../../redux/features/book/bookApi'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-hot-toast'
@@ -12,7 +12,7 @@ const Deletedmodal = ({ id }: any) => {
 
     const handleDelete = () => {
         updatebook(id)
-            .then((res: any) => {
+            .then(() => {
                 toast.success('Delete success')
                 navigate('/book')
             })

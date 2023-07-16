@@ -1,8 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 import { useEffect, useState } from 'react'
 import { useAppSelector } from '../redux/hook'
-import { Navigate, useLocation, useNavigate } from 'react-router-dom'
-
+import { ReactNode } from 'react';
+import { Navigate, useLocation} from 'react-router-dom'
+interface IProps {
+  children: ReactNode;
+}
 const Privateroute = ({ children }: IProps) => {
     const { currentUser } = useAppSelector((state) => state.currentuser)
     const { pathname } = useLocation()

@@ -26,7 +26,6 @@ const Addbook = () => {
     const {
         register,
         handleSubmit,
-        watch,
         reset,
         formState: { errors },
     } = useForm<Inputs>()
@@ -35,7 +34,7 @@ const Addbook = () => {
         data.postby = currentUser?.user?._id
         data.Reviews = []
         addbook(data)
-            .then((res: any) => {
+            .then(() => {
                 toast.success('Add book success')
                 reset()
                 navigate('/book')

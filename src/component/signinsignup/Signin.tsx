@@ -6,7 +6,6 @@
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
 import { useLoginuserMutation } from '../../redux/features/user/userApi'
-import { useEffect } from 'react'
 import { useAppDispatch } from '../../redux/hook'
 import { setCurrentUser } from '../../redux/features/user/Userslice'
 type Inputs = {
@@ -20,7 +19,6 @@ const Signin = () => {
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors },
     } = useForm<Inputs>()
 

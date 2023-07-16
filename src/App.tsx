@@ -2,8 +2,6 @@
 import './App.css'
 import { RouterProvider } from 'react-router-dom'
 import { routes } from './Router/router'
-import { Provider } from 'react-redux'
-import store from './redux/store'
 import { useAppDispatch } from './redux/hook'
 import { useEffect } from 'react'
 import { setCurrentUser } from './redux/features/user/Userslice'

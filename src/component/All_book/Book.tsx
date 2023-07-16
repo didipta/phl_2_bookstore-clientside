@@ -17,7 +17,6 @@ import Deletedmodal from '../modal/Deletedmodal'
 import Editmodal from '../modal/Editmodal'
 import { useSelector } from 'react-redux'
 import {
-    addToWishlist,
     removeFromWishlist,
 } from '../../redux/features/book/wishlist'
 import { markCurrentlyReading } from '../../redux/features/book/readlist'
@@ -25,22 +24,22 @@ import { markCurrentlyReading } from '../../redux/features/book/readlist'
 const Book = () => {
     const [review, setReview] = useState('')
     const { id } = useParams()
-    const { data, isLoading, error } = useGetsinglebookQuery(
+    const { data, isLoading} = useGetsinglebookQuery(
         (id as string) || ' '
     )
     const [setreview] = useSetreviewMutation()
     const { currentUser } = useAppSelector((state) => state.currentuser)
 
     const dispatch = useAppDispatch()
-    const isInWishlist = useSelector((state) =>
-        state.wishlist.some((item) => item.id === id)
+    const isInWishlist = useSelector((state:any) =>
+        state.wishlist.some((item:any) => item.id === id)
     )
 
     const handleWishlistToggle = () => {
         if (isInWishlist) {
             dispatch(removeFromWishlist(id))
         } else {
-            dispatch(addToWishlist({ id, data }))
+           
             toast.success('Added to wishlist')
         }
     }
@@ -53,7 +52,7 @@ const Book = () => {
         }
         if (!isLoading && data.Review_Text !== '') {
             setreview({ data, id })
-                .then((res: any) => {
+                .then(() => {
                     toast.success('Review added')
                     setReview('')
                 })
@@ -62,14 +61,12 @@ const Book = () => {
                 })
         }
     }
-    const status  = useSelector((state) =>
-    state.readlist.find((b) => b.id === id)
-  );
 
-  const handleMarkCurrentlyReading = () => {
-    dispatch(markCurrentlyReading({ bookId: id }));
-    toast.success("Added to currently reading");
-  };
+
+    const handleMarkCurrentlyReading = () => {
+        dispatch(markCurrentlyReading({ bookId: id }))
+        toast.success('Added to currently reading')
+    }
     return (
         <div>
             {!isLoading ? (
@@ -100,8 +97,11 @@ const Book = () => {
                                 ).toLocaleDateString()}
                             </p>
 
-                            <button className="btn btn-sm text-white  bg-pink-600 border-none " onClick={handleMarkCurrentlyReading}>
-                            Read
+                            <button
+                                className="btn btn-sm text-white  bg-pink-600 border-none "
+                                onClick={handleMarkCurrentlyReading}
+                            >
+                                Read
                             </button>
                             <button
                                 className="btn btn-sm text-white  bg-pink-600 border-none mx-2"
