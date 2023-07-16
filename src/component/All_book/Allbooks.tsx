@@ -12,11 +12,17 @@ import { useAppSelector } from '../../redux/hook'
 import { Link } from 'react-router-dom'
 const Allbooks = () => {
     const [page, setPage] = useState(1)
+    const [search, setSearchs] = useState('')
+
+    const datas={
+        page,
+        search
+    }
 
     const handlePageChange = ({ selected }: any) => {
         setPage(selected + 1)
     }
-    const { data, isLoading, error } = useGetbookQuery(page)
+    const { data, isLoading, error } = useGetbookQuery(datas)
     const { currentUser } = useAppSelector((state) => state.currentuser)
 
     return (
@@ -28,6 +34,14 @@ const Allbooks = () => {
                         Add Book
                     </Link>
                 )}
+            </div>
+            <div className="flex justify-center items-center">
+                <input 
+                type="text"
+                placeholder="Search"
+                className="input input-bordered w-1/2"
+                onChange={(e)=>setSearchs(e.target.value)}
+                />
             </div>
 
             {!isLoading ? (

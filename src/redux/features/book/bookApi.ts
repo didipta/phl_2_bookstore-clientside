@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { api } from '../../api/apiSlice'
@@ -5,7 +7,8 @@ import { api } from '../../api/apiSlice'
 const bookApi = api.injectEndpoints({
     endpoints: (builder) => ({
         getbook: builder.query({
-            query: (data: number) => `/books?page=${data}`,
+            query: (data:any) =>
+                `/books?page=${data.page}&searchTerm=${data.search}`,
         }),
         newbook: builder.query({
             query: () => '/books/get/new',
