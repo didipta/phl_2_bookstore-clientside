@@ -47,7 +47,7 @@ const Book = () => {
             <div className="card shadow-sm mx-auto my-10">
                 <div className="flex flex-col lg:flex-row md:flex-row justify-center gap-5 p-5">
                     <figure>
-                        <img src={data.data.image} alt="" />
+                        <img src={data.data.image} alt="" className=" w-96 border" />
                     </figure>
                     <div className="">
                     <h2 className="card-title text-2xl mb-2">{data.data.Title}</h2>
@@ -95,14 +95,15 @@ const Book = () => {
                         }
                         </div>
                 </div>
+                <Deletedmodal id={id}/>
+                <Editmodal id={id} data={data.data}/>
                 </div>
                 :
                 <h1>Loading...</h1>
 
         }
 
-        <Deletedmodal id={id}/>
-        <Editmodal id={id} data={data}/>
+       
     </div>
 }
 

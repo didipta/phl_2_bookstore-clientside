@@ -1,8 +1,30 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 import React from 'react';
-
+import { useEffect } from 'react'
+import { useForm } from 'react-hook-form';
+type Inputs = {
+    Title: string
+    Author: string
+    Genre: string
+    Publication_Date: Date
+    postby: string
+    image: string
+    Reviews: []
+}
 const Editmodal = ({id,data}:any) => {
-    const handeledit = () => {
+    const {
+        register,
+        handleSubmit,
+        watch,
+        reset,
+        formState: { errors },
+    } = useForm<Inputs>();
+
+    useEffect(() => {
+        reset(data)
+    },[data])
+    const onSubmit = () => {
         console.log("edit",id)
     }
     return (
@@ -14,10 +36,98 @@ const Editmodal = ({id,data}:any) => {
     <input type="checkbox" id={`edit-${id}`} className="modal-toggle" />
     <div className="modal">
     <div className="modal-box">
-        <h3 className="font-bold text-lg">Edit Book!</h3>
-        <p className="py-4"> Are You sure delete this book?</p>
+    <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
+                <h2 className="card-title">Add Book</h2>
+                <div className="form-control">
+                    <label className="label">
+                        <span className="label-text">Title</span>
+                    </label>
+                    <input
+                        type="text"
+                        placeholder="name"
+                        className="input input-bordered"
+                        {...register('Title', { required: true })}
+                    />
+                    {errors.Title && (
+                        <span className="text-xs text-red-500">
+                            This field is required
+                        </span>
+                    )}
+                </div>
+                <div className="form-control">
+                    <label className="label">
+                        <span className="label-text">Author Name</span>
+                    </label>
+                    <input
+                        type="text"
+                        placeholder="name"
+                        className="input input-bordered"
+                        {...register('Author', { required: true })}
+                    />
+                    {errors.Author && (
+                        <span className="text-xs text-red-500">
+                            This field is required
+                        </span>
+                    )}
+                </div>
+                <div className="form-control">
+                    <label className="label">
+                        <span className="label-text">Genre Name</span>
+                    </label>
+                    <input
+                        type="text"
+                        placeholder="name"
+                        className="input input-bordered"
+                        {...register('Genre', { required: true })}
+                    />
+                    {errors.Genre && (
+                        <span className="text-xs text-red-500">
+                            This field is required
+                        </span>
+                    )}
+                </div>
+                <div className="form-control">
+                    <label className="label">
+                        <span className="label-text">Publication Date</span>
+                    </label>
+                    <input
+                        type="date"
+                        placeholder="name"
+                        className="input input-bordered"
+                        {...register('Publication_Date', { required: true })}
+                    />
+                    {errors.Publication_Date && (
+                        <span className="text-xs text-red-500">
+                            This field is required
+                        </span>
+                    )}
+                </div>
+                <div className="form-control">
+                    <label className="label">
+                        <span className="label-text">image</span>
+                    </label>
+                    <input
+                        type="text"
+                        placeholder="name"
+                        className="input input-bordered"
+                        {...register('image', { required: true })}
+                    />
+                    {errors.image && (
+                        <span className="text-xs text-red-500">
+                            This field is required
+                        </span>
+                    )}
+                </div>
+
+                <div className="form-control mt-6">
+                    <input
+                        type="submit"
+                        value="Save"
+                        className="btn btn-neutral font-bold"
+                    />
+                </div>
+            </form>
         <div className="modal-action">
-            <button className="btn bg-red-600 text-white" onClick={handeledit}>Update</button>
         <label htmlFor={`edit-${id}`} className="btn">Close!</label>
         </div>
     </div>
