@@ -132,7 +132,7 @@ const Addbook = () => {
                 <div className="form-control mt-6">
                     <input
                         type="submit"
-                        value="Sign up"
+                        value="Save"
                         className="btn btn-neutral font-bold"
                     />
                 </div>

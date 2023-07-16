@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
@@ -8,6 +9,8 @@ import { useGetsinglebookQuery, useSetreviewMutation } from '../../redux/feature
 import { useAppSelector } from '../../redux/hook'
 import { useState } from 'react'
 import { toast } from 'react-hot-toast'
+import Deletedmodal from '../modal/Deletedmodal'
+import Editmodal from '../modal/Editmodal'
 
 const Book = () => {
     const [review, setReview] = useState("")
@@ -57,8 +60,8 @@ const Book = () => {
                         <button className="btn btn-sm text-white  bg-pink-600 border-none ">Watch</button>
                         {
                             currentUser?.user?._id === data.data.postby._id &&<>
-                             <button className="btn btn-sm text-white bg-blue-600 border-none mx-2">Edit</button>
-                        <button className="btn btn-sm text-white bg-yellow-600  border-none">Delete</button>
+                             <label htmlFor={`edit-${id}`}  className="btn btn-sm text-white bg-blue-600 border-none mx-2">Edit</label>
+                        <label htmlFor={`delect-${id}`} className="btn btn-sm text-white bg-yellow-600  border-none">Delete</label>
                             </>
                         }
                        
@@ -97,6 +100,9 @@ const Book = () => {
                 <h1>Loading...</h1>
 
         }
+
+        <Deletedmodal id={id}/>
+        <Editmodal id={id} data={data}/>
     </div>
 }
 
